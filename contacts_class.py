@@ -7,9 +7,6 @@ class Contact:
 	phone = ""
 	email = ""
 
-        
-	
-	
 name1 = Contact()
 name1.name = "Amit"
 name1.phone = "123-4567"
@@ -21,9 +18,14 @@ name2.phone = "123-4566"
 name2.email = "george@gmail.com"
 
 
+contact_book = {}
+contact_book[name1.name] = name1
+contact_book[name2.name] = name2        
+	
+
 def print_contacts(book):
-	for e in book:
-		print e
+	for key in book:
+		print key
 
 
 # This function gives the user the choices, and takes the users input
@@ -44,13 +46,13 @@ def make_contact():
 	number = raw_input()
 	print "What is " + name + 's email?'
 	email = raw_input()
-	count = 2
-	count += 1
-	person = "name" + str(count)
 	person = Contact()
 	person.name = name
 	person.number = number
 	person.email = email
+	contact_book[name] = person
+	
+	
 				
 def is_phonenumber(text):
 	return "".join(text.split("-")).isdigit()	
@@ -63,8 +65,26 @@ if __name__ == "__main__":
 		choice = get_choice()	
 		
 		if choice == "1":
-			print name1.__dict__	
+			string = ''
+			list = []
+			print "Whose information do you want?"
+ 			contact = raw_input()	
+			contact_number = []
+			if is_phonenumber(contact): 
+				for i in contact_book:
+					contact_number.append(i)
+					if contact == contact_book[i].phone:
+						print i						 
+			else:
+				for e in contact_number:
+						if contact != e:
+							print "Could not find the contact"			
 			
+			if is_phonenumber(contact) == False:
+				if contact in contact_book:
+					print contact_book[contact]			 
+				else:
+ 					print contact + ' is not in the contact book'
 						
 			
 			
@@ -73,11 +93,7 @@ if __name__ == "__main__":
 			contactlist = []
 			print "These are the contacts"
 			print ""
-			contactlist.append(name1.__dict__)
-			contactlist.append(name2.__dict__)
-			for e in contactlist:
-				if e == 'name':
-					print e
+			print_contacts(contact_book)
 			print ""
 		if choice == '3':
 			break	

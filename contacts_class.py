@@ -82,7 +82,7 @@ if __name__ == "__main__":
 			
 			if is_phonenumber(contact) == False:
 				if contact in contact_book:
-					print contact_book[contact]			 
+					print contact_book[contact].__dict__		 
 				else:
  					print contact + ' is not in the contact book'
 						

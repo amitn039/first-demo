@@ -6,6 +6,8 @@ class Contact:
 	name = ""
 	phone = ""
 	email = ""
+	def __str__(self):
+		return self.name + 's phone number is ' + self.phone + ', and their email is ' + self.email	
 
 name1 = Contact()
 name1.name = "Amit"
@@ -57,6 +59,9 @@ def make_contact():
 def is_phonenumber(text):
 	return "".join(text.split("-")).isdigit()	
 
+
+
+
 if __name__ == "__main__":
 	# Actual program
 	print "This is the address book"
@@ -82,7 +87,7 @@ if __name__ == "__main__":
 			
 			if is_phonenumber(contact) == False:
 				if contact in contact_book:
-					print contact_book[contact].__dict__		 
+					print contact_book[contact]
 				else:
  					print contact + ' is not in the contact book'
 						
